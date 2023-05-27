@@ -5,14 +5,14 @@ Skills used: Join's, CTE's, Temp Tables, Window Functions, Creating View, Conver
 
 */
 
+
 SELECT *
 FROM PortfolioProject..CovidDeaths
 WHERE continent IS NOT NULL
 ORDER BY 3,4
 
---SELECT *
---FROM PortfolioProject..CovidVaccination
---ORDER BY 3,4
+
+
 
 -- Select Data that we are going to be using
 
@@ -20,6 +20,8 @@ SELECT location, date, total_cases, new_cases, total_deaths, population
 FROM PortfolioProject..CovidDeaths
 WHERE continent IS NOT NULL
 ORDER BY 1,2
+
+
 
 
 -- Total Cases vs Total Deaths
@@ -33,6 +35,8 @@ AND continent IS NOT NULL
 ORDER BY 1, 2 DESC;
 
 
+
+
 -- Total Cases vs Population
 -- Calculates the percentage of population infected with Covid
 -- Analysis: As of 2023-05-24, approximately 3.57% of the population in the Philippines(in millions) has been infected with Covid.
@@ -44,6 +48,8 @@ AND continent IS NOT NULL
 ORDER BY 1, 2 DESC;
 
 
+
+
 -- Countries with Highest Infection Rate compared to Population
 -- Analysis: The country with the highest infection rate by percentage is Cyprus, with about 73.75% of its population infected. This high infection rate is not surprising considering the size of the population.
 
@@ -51,6 +57,7 @@ SELECT location, population, MAX(CAST(total_cases AS int)) AS HighestInfectionCo
 FROM PortfolioProject..CovidDeaths 
 GROUP BY location, population
 ORDER BY CountryInfectedPopulationPercentage DESC;
+
 
 
 
@@ -65,6 +72,7 @@ ORDER BY TotalDeathCount DESC;
 
 
 
+
 -- Breaking things down by continent
 -- Showing continents with the highest death count per population
 
@@ -73,6 +81,7 @@ FROM PortfolioProject..CovidDeaths
 WHERE continent IS NOT NULL
 GROUP BY continent
 ORDER BY TotalDeathCount DESC;
+
 
 
 
@@ -86,6 +95,7 @@ ORDER BY 1, 2;
 
 
 
+
 -- Daily COVID-19 Trends
 -- Analysis: Examines the daily trends of COVID-19 cases and deaths worldwide. It provides insights into the total cases, total deaths, and the death percentage on each date.
 
@@ -94,6 +104,7 @@ FROM PortfolioProject..CovidDeaths
 WHERE continent IS NOT NULL
 GROUP BY date
 ORDER BY 1, 2;
+
 
 
 
@@ -135,6 +146,7 @@ JOIN PortfolioProject..CovidVaccination vac
 	and dea.date = vac.date
 WHERE dea.continent IS NOT NULL
 ORDER BY 2, 3;
+
 
 
 
@@ -185,6 +197,7 @@ FROM #PercentPopulationVaccinated
 
 
 
+
 -- Creating View to store data for later visualizations
 
 -- View Total Cases vs Total Deaths
@@ -210,6 +223,7 @@ AND continent IS NOT NULL
 SELECT *
 FROM TotalCasesvsPopulation
 
+
 -- View Countries with Highest Infection Rate compared to Population
 CREATE VIEW CountriesHIR AS
 SELECT location, population, MAX(CAST(total_cases AS int)) AS HighestInfectionCount, MAX((CAST(total_cases AS FLOAT) / population))*100 AS CountryInfectedPopulationPercentage
@@ -229,7 +243,6 @@ WHERE continent IS NOT NULL
 GROUP BY location
 --ORDER BY TotalDeathCount DESC;
 
-
 SELECT *
 FROM CountriesHDC
 
@@ -245,6 +258,7 @@ GROUP BY continent
 SELECT *
 FROM ContinentHDC
 
+
 -- View Total Population vs Vaccinations
 CREATE VIEW TotalPopulationvsVaccinations AS
 SELECT dea.continent, dea.location, dea.date, population, vac.new_vaccinations
@@ -259,8 +273,6 @@ SELECT *
 FROM TotalPopulationvsVaccinations
 
 
-
-
 -- View for PercentPopulationVaccinated
 
 CREATE VIEW PercentPopulationVaccinated as
@@ -272,7 +284,6 @@ JOIN PortfolioProject..CovidVaccination vac
 	ON dea.location = vac.location
 	and dea.date = vac.date
 WHERE dea.continent IS NOT NULL
-
 
 SELECT *
 FROM PercentPopulationVaccinated
