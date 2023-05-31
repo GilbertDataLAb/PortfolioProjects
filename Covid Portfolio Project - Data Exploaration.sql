@@ -3,6 +3,17 @@ Covid 19 Data Exploration
 
 Skills used: Join's, CTE's, Temp Tables, Window Functions, Creating View, Converting Data Types, Aggregate Functions
 
+Questions I tried to answers
+1. What is the current death percentage in the Philippines, and how does it compare to previous periods, such as 2020?
+2. What is the estimated percentage of the population in the Philippines that has been infected with Covid as of May 24, 2023?
+3. Which country currently has the highest infection rate by percentage, and what is the approximate percentage of the population 
+   that has been infected?
+4.Which countries have the highest death count per population due to COVID-19, and what are their respective death counts?
+5.What is the current global COVID-19 situation in terms of the total number of cases, deaths, and the death percentage?
+6.How have COVID-19 cases and deaths been trending globally on a daily basis? Provide information on the total cases, total deaths, 
+  and death percentage for each date.
+7.How is the progress of COVID-19 vaccination efforts in different regions? Provide an overview of the cumulative number of new 
+  vaccinations over time for each location.
 */
 
 
